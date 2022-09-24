@@ -114,6 +114,15 @@ do
             return p:globalY() + self._y
         end
         function r:render()
+            self:renderChildren()
+        end
+        function r:renderChildren()
+            if self._children == nil then
+                return
+            end
+            for i, v in ipairs(self._children) do
+                v:render()
+            end
         end
         function r:unrender()
             self:unrenderChildren()
@@ -157,5 +166,14 @@ do
         r._backgroundAlpha = 0;
         r._fixedPos = false;
         return r
+    end
+    
+    function c4u.textarea:text()
+        return self._text
+    end
+    
+    function c4u.textarea:setText(v)
+        self._text = tostring(v)
+        return self
     end
 end
