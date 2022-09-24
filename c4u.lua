@@ -12,14 +12,14 @@ do
             allocatedIdsByTarget[target] = ar
         end
         local rId, ari, arl = 1, 1, #ar
-        while i <= arl do
-            if rId < ar[i] then
+        while ari <= arl do
+            if rId < ar[ari] then
                 ar[]
-                table.insert(ar, i, rId)
+                table.insert(ar, ari, rId)
                 return rId
             end
             ari = ari + 1
-            rId = ar[i] + 1
+            rId = ar[ari] + 1
         end
         ar[arl + 1] = rId
         return rId
