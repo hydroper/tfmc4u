@@ -115,15 +115,15 @@ do
         end
         function r:render()
         end
-        function r:remove()
-            self:removeChildren()
+        function r:unrender()
+            self:unrenderChildren()
         end
-        function r:removeChildren()
+        function r:unrenderChildren()
             if self._children == nil then
                 return
             end
             for i, v in ipairs(self._children) do
-                v:remove()
+                v:unrender()
             end
         end
         return setmetatable(r, {
