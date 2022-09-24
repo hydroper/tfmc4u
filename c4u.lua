@@ -50,11 +50,15 @@ do
 
     function c4u.component.subtype()
         local r = {}
+        function r:typeof()
+            return self._typeof
+        end
         function r:target()
             return self._target
         end
         function r:setTarget(v)
             self._target = v ~= nil and tostring(v) or nil
+            return self
         end
         function r:parent()
             return self._parent
@@ -67,12 +71,14 @@ do
         end
         function r:setX(v)
             self._x = tonumber(v)
+            return self
         end
         function r:y()
             return self._y
         end
         function r:setY(v)
             self._y = tonumber(v)
+            return self
         end
         function r:render()
         end
@@ -85,6 +91,7 @@ do
 
     function c4u.component.subtype_instance(type)
         return setmetatable({
+            _typeof = type,
             _children = nil,
             _target = nil,
             _x =  0,
