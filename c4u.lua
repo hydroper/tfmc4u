@@ -17,8 +17,8 @@ do
                 table.insert(ar, ari, rId)
                 return rId
             end
-            ari = ari + 1
             rId = ar[ari] + 1
+            ari = ari + 1
         end
         ar[arl + 1] = rId
         return rId
