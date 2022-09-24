@@ -248,6 +248,12 @@ do
         return self
     end
 
+    function c4u.textarea:updateRenderedText()
+        if self._renderedId ~= -1 then
+            ui.updateTextArea(self._renderedId, self._text, self:inheritTarget())
+        end
+    end
+
     function c4u.textarea:render()
         if self._renderedId ~= -1 then
             self:unrender()
@@ -257,13 +263,6 @@ do
         local parent = self._parent
         ui.addTextArea(self._renderedId, self._text, target, self:globalX(), self:globalY(), self._width, self._height, self._backgroundColor, self._borderColor, self._backgroundAlpha, self:inheritFixedPos())
         self:renderChildren()
-    end
-
-    function c4u.textarea:updateRenderedText()
-        if self._renderedId ~= -1 then
-            local target = self:inheritTarget()
-            ui.updateTextArea(self._renderedId, self._text, target)
-        end
     end
 
     function c4u.textarea:unrender()
