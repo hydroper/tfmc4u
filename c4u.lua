@@ -250,15 +250,21 @@ do
     end
     
     function c4u.textarea:render()
-        self._renderedId = allocateId(self._target)
+        local target = self:inheritTarget()
+        self._renderedId = allocateId(target)
         local parent = self._parent
-        ui.addTextArea(self._renderedId, self._text, self:inheritTarget(), self:globalX(), self:globalY(), self._width, self._height, self._backgroundColor, self._borderColor, self._backgroundAlpha, self:inheritFixedPos())
+        ui.addTextArea(self._renderedId, self._text, target, self:globalX(), self:globalY(), self._width, self._height, self._backgroundColor, self._borderColor, self._backgroundAlpha, self:inheritFixedPos())
         self:renderChildren()
     end
     
     function c4u.textarea:unrender()
-        ui.removeTextArea(self._renderedId, self:inheritTarget())
-        self._renderedId = 0
+        if self._renderedId == -1 then
+            return
+        end
+        local target = self:inheritTarget()
+        ui.removeTextArea(self._renderedId, target)
+        freeId(target, self._renderedId)
+        self._renderedId = -1
         self:unrenderChildren()
     end
 end
