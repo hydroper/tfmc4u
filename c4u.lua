@@ -12,6 +12,7 @@ do
             allocatedIdsByTarget[target] = ar
         end
         local rId, ari, arl = 1, 1, #ar
+        -- could replace this with for..in
         while ari <= arl do
             if rId < ar[ari] then
                 table.insert(ar, ari, rId)
