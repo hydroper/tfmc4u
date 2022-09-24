@@ -164,7 +164,7 @@ do
             _typeof = type,
             _children = nil,
             _target = nil,
-            _x =  0,
+            _x = 0,
             _y = 0,
         }, {
             __index = type
@@ -185,38 +185,38 @@ do
         r._fixedPos = false;
         return r
     end
-    
+
     function c4u.textarea:text()
         return self._text
     end
-    
+
     function c4u.textarea:setText(v)
         self._text = tostring(v)
         return self
     end
-    
+
     function c4u.textarea:width()
         return self._width
     end
-    
+
     function c4u.textarea:setWidth(v)
         self._width = tonumber(v)
         return self
     end
-    
+
     function c4u.textarea:height()
         return self._height
     end
-    
+
     function c4u.textarea:setHeight(v)
         self._height = tonumber(v)
         return self
     end
-    
+
     function c4u.textarea:backgroundColor()
         return self._backgroundColor
     end
-    
+
     function c4u.textarea:setBackgroundColor(v)
         self._backgroundColor = tonumber(v)
         return self
@@ -225,16 +225,16 @@ do
     function c4u.textarea:borderColor()
         return self._borderColor
     end
-    
+
     function c4u.textarea:setBorderColor(v)
         self._borderColor = tonumber(v)
         return self
     end
-    
+
     function c4u.textarea:backgroundAlpha()
         return self._backgroundAlpha
     end
-    
+
     function c4u.textarea:setBackgroundAlpha(v)
         self._backgroundAlpha = tonumber(v)
         return self
@@ -243,12 +243,12 @@ do
     function c4u.textarea:fixedPos()
         return self._fixedPos
     end
-    
+
     function c4u.textarea:setFixedPos(v)
         self._fixedPos = not not v
         return self
     end
-    
+
     function c4u.textarea:render()
         local target = self:inheritTarget()
         self._renderedId = allocateId(target)
@@ -256,7 +256,7 @@ do
         ui.addTextArea(self._renderedId, self._text, target, self:globalX(), self:globalY(), self._width, self._height, self._backgroundColor, self._borderColor, self._backgroundAlpha, self:inheritFixedPos())
         self:renderChildren()
     end
-    
+
     function c4u.textarea:unrender()
         if self._renderedId == -1 then
             return
@@ -264,6 +264,111 @@ do
         local target = self:inheritTarget()
         ui.removeTextArea(self._renderedId, target)
         freeId(target, self._renderedId)
+        self._renderedId = -1
+        self:unrenderChildren()
+    end
+
+    c4u.image = c4u.component.subtype()
+
+    function c4u.image:new()
+        local r = c4u.component.subtype_instance()
+        r._renderedId = 0;
+        r._source = ''
+        r._fixedPos = false
+        r._scaleX = 1
+        r._scaleY = 1
+        r._angle = 0
+        r._alpha = 1
+        r._anchorX = 0
+        r._anchorY = 0
+        return r
+    end
+
+    function c4u.image:source()
+        return self._source
+    end
+
+    function c4u.image:setSource(v)
+        self._source = v
+        return self
+    end
+
+    function c4u.image:fixedPos()
+        return self._fixedPos
+    end
+
+    function c4u.image:setFixedPos(v)
+        self._fixedPos = not not v
+        return self
+    end
+
+    function c4u.image:scaleX()
+        return self._scaleX
+    end
+
+    function c4u.image:setScaleX(v)
+        self._scaleX = tonumber(v)
+        return self
+    end
+
+    function c4u.image:scaleY()
+        return self._scaleY
+    end
+
+    function c4u.image:setScaleY(v)
+        self._scaleY = tonumber(v)
+        return self
+    end
+
+    function c4u.image:angle()
+        return self._angle
+    end
+
+    function c4u.image:setAngle(v)
+        self._angle = tonumber(v)
+        return self
+    end
+
+    function c4u.image:alpha()
+        return self._alpha
+    end
+
+    function c4u.image:setAlpha(v)
+        self._alpha = tonumber(v)
+        return self
+    end
+
+    function c4u.image:anchorX()
+        return self._anchorX
+    end
+
+    function c4u.image:setAnchorX(v)
+        self._anchorX = tonumber(v)
+        return self
+    end
+
+    function c4u.image:anchorY()
+        return self._anchorY
+    end
+
+    function c4u.image:setAnchorY(v)
+        self._anchorY = tonumber(v)
+        return self
+    end
+
+    function c4u.image:render()
+        local target = self:inheritTarget()
+        local parent = self._parent
+        local fixedPos = self:inheritFixedPos()
+        self._renderedId = tfm.exec.addImage(self._source, (fixedPos and '&' or '!') .. tostring(1), self:globalX(), self:globalY(), target, self._scaleX, self._scaleY, self._angle, self._alpha, self._anchorX, self._anchorY)
+        self:renderChildren()
+    end
+
+    function c4u.image:unrender()
+        if self._renderedId == -1 then
+            return
+        end
+        tfm.exec.removeImage(self._renderedId)
         self._renderedId = -1
         self:unrenderChildren()
     end
