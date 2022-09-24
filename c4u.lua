@@ -255,4 +255,10 @@ do
         ui.addTextArea(self._renderedId, self._text, self:inheritTarget(), self:globalX(), self:globalY(), self._width, self._height, self._backgroundColor, self._borderColor, self._backgroundAlpha, self:inheritFixedPos())
         self:renderChildren()
     end
+    
+    function c4u.textarea:unrender()
+        ui.removeTextArea(self._renderedId, self:inheritTarget())
+        self._renderedId = 0
+        self:unrenderChildren()
+    end
 end
