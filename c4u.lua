@@ -34,6 +34,9 @@ do
         while i <= arl do
             if ar[i] == id then
                 table.remove(ar, i)
+                if arl == 1 then
+                    allocatedIdsByTarget[target] = nil
+                end
                 return
             end
             i = i + 1
@@ -41,9 +44,7 @@ do
     end
 
     function c4u.internals.playerLeft(name)
-        if allocatedIdsByTarget[name] ~= nil then
-            allocatedIdsByTarget[name] = nil
-        end
+        allocatedIdsByTarget[name] = nil
     end
 
     c4u.component = {}
