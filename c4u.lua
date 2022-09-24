@@ -60,6 +60,9 @@ do
             return self._target
         end
         function r:setTarget(v)
+            if self:isRendered() then
+                error('Illegal target reassignment on rendered component')
+            end
             self._target = v ~= nil and tostring(v) or nil
             return self
         end
@@ -114,6 +117,9 @@ do
                 return self._y
             end
             return p:globalY() + self._y
+        end
+        function r:isRendered()
+            return false
         end
         function r:render()
             self:renderChildren()
@@ -185,6 +191,10 @@ do
         return r
     end
 
+    function c4u.textarea:isRendered()
+        return self._renderedId ~= -1
+    end
+    
     function c4u.textarea:text()
         return self._text
     end
@@ -249,13 +259,13 @@ do
     end
 
     function c4u.textarea:updateRenderedText()
-        if self._renderedId ~= -1 then
+        if self:isRendered() then
             ui.updateTextArea(self._renderedId, self._text, self:inheritTarget())
         end
     end
 
     function c4u.textarea:render()
-        if self._renderedId ~= -1 then
+        if self:isRendered() then
             self:unrender()
         end
         local target = self:inheritTarget()
@@ -266,7 +276,7 @@ do
     end
 
     function c4u.textarea:unrender()
-        if self._renderedId == -1 then
+        if not self:isRendered() then
             return
         end
         local target = self:inheritTarget()
@@ -292,6 +302,10 @@ do
         return r
     end
 
+    function c4u.image:isRendered()
+        return self._renderedId ~= -1
+    end
+    
     function c4u.image:source()
         return self._source
     end
@@ -365,7 +379,7 @@ do
     end
 
     function c4u.image:render()
-        if self._renderedId ~= -1 then
+        if self:isRendered() then
             self:unrender()
         end
         local target = self:inheritTarget()
@@ -376,7 +390,7 @@ do
     end
 
     function c4u.image:unrender()
-        if self._renderedId == -1 then
+        if not self:isRendered() then
             return
         end
         tfm.exec.removeImage(self._renderedId)
