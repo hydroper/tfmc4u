@@ -81,6 +81,20 @@ do
             self._y = tonumber(v)
             return self
         end
+        function r:globalX()
+            local p = self._parent
+            if p == nil then
+                return self._x
+            end
+            return p:globalX() + self._x
+        end
+        function r:globalY()
+            local p = self._parent
+            if p == nil then
+                return self._y
+            end
+            return p:globalY() + self._y
+        end
         function r:render()
         end
         return setmetatable(r, {
