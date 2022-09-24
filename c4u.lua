@@ -14,7 +14,6 @@ do
         local rId, ari, arl = 1, 1, #ar
         while ari <= arl do
             if rId < ar[ari] then
-                ar[]
                 table.insert(ar, ari, rId)
                 return rId
             end
