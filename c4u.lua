@@ -26,6 +26,9 @@ do
     end
     
     local function freeId(target, id)
+        if target == nil then
+            target = '#'
+        end
         local ar = allocatedIdsByTarget[target]
         if ar == nil then
             return
@@ -135,6 +138,20 @@ do
                 v:unrender()
             end
         end
+        function r:inheritTarget()
+            local parent = self._parent
+            if parent ~= nil then
+                return parent.inheritTarget()
+            end
+            return self._target
+        end
+        function r:inheritFixedPos()
+            local parent = self._parent
+            if parent ~= nil then
+                return parent.inheritFixedPos()
+            end
+            return self._fixedPos
+        end
         return setmetatable(r, {
             __call = function(_, ...)
                 return r:new(...)
@@ -158,6 +175,7 @@ do
 
     function c4u.textarea:new()
         local r = c4u.component.subtype_instance()
+        r._renderedId = 0;
         r._text = '';
         r._width = 0;
         r._height = 0;
@@ -229,5 +247,12 @@ do
     function c4u.textarea:setFixedPos(v)
         self._fixedPos = not not v
         return self
+    end
+    
+    function c4u.textarea:render()
+        self._renderedId = allocateId(self._target)
+        local parent = self._parent
+        ui.addTextArea(self._renderedId, self._text, self:inheritTarget(), self:globalX(), self:globalY(), self._width, self._height, self._backgroundColor, self._borderColor, self._backgroundAlpha, self:inheritFixedPos())
+        self:renderChildren()
     end
 end
