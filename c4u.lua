@@ -250,6 +250,9 @@ do
     end
 
     function c4u.textarea:render()
+        if self._renderedId ~= -1 then
+            self:unrender()
+        end
         local target = self:inheritTarget()
         self._renderedId = allocateId(target)
         local parent = self._parent
@@ -357,6 +360,9 @@ do
     end
 
     function c4u.image:render()
+        if self._renderedId ~= -1 then
+            self:unrender()
+        end
         local target = self:inheritTarget()
         local parent = self._parent
         local fixedPos = self:inheritFixedPos()
