@@ -75,6 +75,7 @@ do
         function r:addChild(c)
             self._children = self._children or {}
             table.insert(self._children, c)
+            c._parent = self
             return self
         end
         function r:removeChild(c)
