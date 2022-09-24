@@ -54,8 +54,8 @@ do
 
     function c4u.component.subtype()
         local r = {}
-        function r:typeof()
-            return self._typeof
+        function r:typeOf()
+            return self._typeOf
         end
         function r:target()
             return self._target
@@ -181,7 +181,7 @@ do
 
     function c4u.component.subtype_instance(type)
         return setmetatable({
-            _typeof = type,
+            _typeOf = type,
             _children = nil,
             _target = nil,
             _fixedPos = false,
