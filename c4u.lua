@@ -125,6 +125,14 @@ do
             end
             return p:globalY() + self._y
         end
+        function r:fixedPos()
+            return self._fixedPos
+        end
+
+        function r:setFixedPos(v)
+            self._fixedPos = not not v
+            return self
+        end
         function r:isRendered()
             return false
         end
@@ -176,6 +184,7 @@ do
             _typeof = type,
             _children = nil,
             _target = nil,
+            _fixedPos = false,
             _x = 0,
             _y = 0,
         }, {
@@ -194,7 +203,6 @@ do
         r._backgroundColor = 0x324650
         r._borderColor = 0
         r._backgroundAlpha = 1
-        r._fixedPos = false
         return r
     end
 
@@ -262,15 +270,6 @@ do
         return self
     end 
 
-    function c4u.textarea:fixedPos()
-        return self._fixedPos
-    end
-
-    function c4u.textarea:setFixedPos(v)
-        self._fixedPos = not not v
-        return self
-    end
-
     function c4u.textarea:updateRenderedText()
         if self:isRendered() then
             ui.updateTextArea(self._renderedId, self._text, self:inheritTarget())
@@ -305,7 +304,6 @@ do
         local r = c4u.component.subtype_instance(self)
         r._renderedId = -1
         r._source = ''
-        r._fixedPos = false
         r._scaleX = 1
         r._scaleY = 1
         r._angle = 0
@@ -325,15 +323,6 @@ do
 
     function c4u.image:setSource(v)
         self._source = v
-        return self
-    end
-
-    function c4u.image:fixedPos()
-        return self._fixedPos
-    end
-
-    function c4u.image:setFixedPos(v)
-        self._fixedPos = not not v
         return self
     end
 
