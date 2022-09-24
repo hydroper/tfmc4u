@@ -175,14 +175,14 @@ do
 
     function c4u.textarea:new()
         local r = c4u.component.subtype_instance()
-        r._renderedId = 0;
-        r._text = '';
-        r._width = 0;
-        r._height = 0;
-        r._backgroundColor = 0x324650;
-        r._borderColor = 0;
-        r._backgroundAlpha = 0;
-        r._fixedPos = false;
+        r._renderedId = -1
+        r._text = ''
+        r._width = 0
+        r._height = 0
+        r._backgroundColor = 0x324650
+        r._borderColor = 0
+        r._backgroundAlpha = 0
+        r._fixedPos = false
         return r
     end
 
@@ -272,7 +272,7 @@ do
 
     function c4u.image:new()
         local r = c4u.component.subtype_instance()
-        r._renderedId = 0;
+        r._renderedId = -1
         r._source = ''
         r._fixedPos = false
         r._scaleX = 1
