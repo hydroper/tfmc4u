@@ -190,7 +190,7 @@ do
     c4u.textarea = c4u.component.subtype()
 
     function c4u.textarea:new()
-        local r = c4u.component.subtype_instance()
+        local r = c4u.component.subtype_instance(self)
         r._renderedId = -1
         r._text = ''
         r._width = 0
@@ -300,7 +300,7 @@ do
     c4u.image = c4u.component.subtype()
 
     function c4u.image:new()
-        local r = c4u.component.subtype_instance()
+        local r = c4u.component.subtype_instance(self)
         r._renderedId = -1
         r._source = ''
         r._fixedPos = false
