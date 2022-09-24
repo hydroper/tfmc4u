@@ -1,4 +1,4 @@
-local c4u = {}
+local c4u = { internals = {} }
 
 do
     local allocatedIdsByTarget = {}
@@ -12,7 +12,7 @@ do
             allocatedIdsByTarget[target] = ar
         end
         local rId, ari, arl = 1, 1, #ar
-        while i < arl do
+        while i <= arl do
             if rId < ar[i] then
                 ar[]
                 table.insert(ar, i, rId)
@@ -23,6 +23,21 @@ do
         end
         ar[arl + 1] = rId
         return rId
+    end
+    
+    local function freeId(target, id)
+        local ar = allocatedIdsByTarget[target]
+        if ar == nil then
+            return
+        end
+        local i, arl = 1, #ar
+        while i <= arl do
+            if ar[i] == id then
+                table.remove(ar, i)
+                return
+            end
+            i = i + 1
+        end
     end
 
     function c4u.internals.playerLeft(name)
