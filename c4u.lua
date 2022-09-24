@@ -70,7 +70,7 @@ do
             return self._children and {table.unpack(self._children)} or {}
         end
         function r:addChild(c)
-            self._children = self._children || {}
+            self._children = self._children or {}
             table.insert(self._children, c)
             return self
         end
