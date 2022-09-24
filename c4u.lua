@@ -1,4 +1,4 @@
-local c4u = { internals = {} }
+_G.c4u = { internals = {} }
 
 do
     local allocatedIdsByTarget = {}
