@@ -196,7 +196,7 @@ do
         r._height = 0
         r._backgroundColor = 0x324650
         r._borderColor = 0
-        r._backgroundAlpha = 0
+        r._backgroundAlpha = 1
         r._fixedPos = false
         return r
     end
