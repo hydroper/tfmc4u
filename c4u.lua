@@ -157,14 +157,14 @@ do
         function r:inheritTarget()
             local parent = self._parent
             if parent ~= nil then
-                return parent.inheritTarget()
+                return parent:inheritTarget()
             end
             return self._target
         end
         function r:inheritFixedPos()
             local parent = self._parent
             if parent ~= nil then
-                return parent.inheritFixedPos()
+                return parent:inheritFixedPos()
             end
             return self._fixedPos
         end
