@@ -97,11 +97,6 @@ do
             self._y = tonumber(y)
             return self
         end
-        function r:setSize(w, h)
-            self._width = tonumber(w)
-            self._height = tonumber(h)
-            return self
-        end
         function r:x()
             return self._x
         end
@@ -213,6 +208,12 @@ do
 
     function c4u.textarea:setText(v)
         self._text = tostring(v)
+        return self
+    end
+
+    function c4u.textarea:setSize(w, h)
+        self._width = tonumber(w)
+        self._height = tonumber(h)
         return self
     end
 
