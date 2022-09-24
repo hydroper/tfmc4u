@@ -67,6 +67,24 @@ do
         function r:children()
             return self._children and {table.unpack(self._children)} or {}
         end
+        function r:addChild(c)
+            self._children = self._children || {}
+            table.insert(self._children, c)
+            return self
+        end
+        function r:removeChild(c)
+            if self._children == nil then
+                return false
+            end
+            for i, v in ipairs(self._children) do
+                if v == c then
+                    table.remove(self._children, i)
+                    c._parent = nil
+                    return true
+                end
+            end
+            return false
+        end
         function r:x()
             return self._x
         end
@@ -97,6 +115,17 @@ do
         end
         function r:render()
         end
+        function r:remove()
+            self:removeChildren()
+        end
+        function r:removeChildren()
+            if self._children == nil then
+                return
+            end
+            for i, v in ipairs(self._children) do
+                v:remove()
+            end
+        end
         return setmetatable(r, {
             __call = function(_, ...)
                 return r:new(...)
@@ -120,6 +149,13 @@ do
 
     function c4u.textarea:new()
         local r = c4u.component.subtype_instance()
+        r._text = '';
+        r._width = 0;
+        r._height = 0;
+        r._backgroundColor = 0x324650;
+        r._borderColor = 0;
+        r._backgroundAlpha = 0;
+        r._fixedPos = false;
         return r
     end
 end
