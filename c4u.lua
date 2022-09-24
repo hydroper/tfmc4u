@@ -90,6 +90,11 @@ do
             end
             return false
         end
+        function r:setPos(x, y)
+            self._x = tonumber(x)
+            self._y = tonumber(y)
+            return self
+        end
         function r:x()
             return self._x
         end
