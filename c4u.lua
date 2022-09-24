@@ -176,4 +176,58 @@ do
         self._text = tostring(v)
         return self
     end
+    
+    function c4u.textarea:width()
+        return self._width
+    end
+    
+    function c4u.textarea:setWidth(v)
+        self._width = tonumber(v)
+        return self
+    end
+    
+    function c4u.textarea:height()
+        return self._height
+    end
+    
+    function c4u.textarea:setHeight(v)
+        self._height = tonumber(v)
+        return self
+    end
+    
+    function c4u.textarea:backgroundColor()
+        return self._backgroundColor
+    end
+    
+    function c4u.textarea:setBackgroundColor(v)
+        self._backgroundColor = tonumber(v)
+        return self
+    end
+
+    function c4u.textarea:borderColor()
+        return self._borderColor
+    end
+    
+    function c4u.textarea:setBorderColor(v)
+        self._borderColor = tonumber(v)
+        return self
+    end
+    
+    function c4u.textarea:backgroundAlpha()
+        return self._backgroundAlpha
+    end
+    
+    function c4u.textarea:setBackgroundAlpha(v)
+        self._backgroundAlpha = tonumber(v)
+        return self
+    end 
+
+    function c4u.textarea:fixedPos()
+        return self._fixedPos
+    end
+    
+    function c4u.textarea:setFixedPos(v)
+        self._fixedPos = not not v
+        return self
+    end
 end
