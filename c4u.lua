@@ -259,6 +259,13 @@ do
         self:renderChildren()
     end
 
+    function c4u.textarea:updateRenderedText()
+        if self._renderedId ~= -1 then
+            local target = self:inheritTarget()
+            ui.updateTextArea(self._renderedId, self._text, target)
+        end
+    end
+
     function c4u.textarea:unrender()
         if self._renderedId == -1 then
             return
