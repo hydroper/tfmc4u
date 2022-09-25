@@ -439,7 +439,7 @@ do
     end
 
     function c4u_popup:setText(text)
-        self._text = tonumber(text)
+        self._text = tostring(text)
         return self
     end
 
