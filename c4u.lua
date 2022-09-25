@@ -198,8 +198,9 @@ do
     end
 
     c4u.textarea = c4u.component.subtype()
+    local c4u_textarea = c4u.textarea
 
-    function c4u.textarea:new()
+    function c4u_textarea:new()
         local r = c4u.component.subtype_instance(self)
         r._renderedId = -1
         r._text = ''
@@ -211,77 +212,77 @@ do
         return r
     end
 
-    function c4u.textarea:isRendered()
+    function c4u_textarea:isRendered()
         return self._renderedId ~= -1
     end
     
-    function c4u.textarea:text()
+    function c4u_textarea:text()
         return self._text
     end
 
-    function c4u.textarea:setText(v)
+    function c4u_textarea:setText(v)
         self._text = tostring(v)
         return self
     end
 
-    function c4u.textarea:setSize(w, h)
+    function c4u_textarea:setSize(w, h)
         self._width = tonumber(w)
         self._height = tonumber(h)
         return self
     end
 
-    function c4u.textarea:width()
+    function c4u_textarea:width()
         return self._width
     end
 
-    function c4u.textarea:setWidth(v)
+    function c4u_textarea:setWidth(v)
         self._width = tonumber(v)
         return self
     end
 
-    function c4u.textarea:height()
+    function c4u_textarea:height()
         return self._height
     end
 
-    function c4u.textarea:setHeight(v)
+    function c4u_textarea:setHeight(v)
         self._height = tonumber(v)
         return self
     end
 
-    function c4u.textarea:backgroundColor()
+    function c4u_textarea:backgroundColor()
         return self._backgroundColor
     end
 
-    function c4u.textarea:setBackgroundColor(v)
+    function c4u_textarea:setBackgroundColor(v)
         self._backgroundColor = tonumber(v)
         return self
     end
 
-    function c4u.textarea:borderColor()
+    function c4u_textarea:borderColor()
         return self._borderColor
     end
 
-    function c4u.textarea:setBorderColor(v)
+    function c4u_textarea:setBorderColor(v)
         self._borderColor = tonumber(v)
         return self
     end
 
-    function c4u.textarea:backgroundAlpha()
+    function c4u_textarea:backgroundAlpha()
         return self._backgroundAlpha
     end
 
-    function c4u.textarea:setBackgroundAlpha(v)
+    function c4u_textarea:setBackgroundAlpha(v)
         self._backgroundAlpha = tonumber(v)
         return self
     end 
 
-    function c4u.textarea:updateRenderedText()
+    function c4u_textarea:updateRenderedText()
         if self:isRendered() then
             ui.updateTextArea(self._renderedId, self._text, self:inheritTarget())
         end
     end
 
-    function c4u.textarea:render()
+    function c4u_textarea:render()
         if self:isRendered() then
             self:unrender()
         end
@@ -292,7 +293,7 @@ do
         self:renderChildren()
     end
 
-    function c4u.textarea:unrender()
+    function c4u_textarea:unrender()
         if not self:isRendered() then
             return
         end
@@ -304,8 +305,9 @@ do
     end
 
     c4u.image = c4u.component.subtype()
+    local c4u_image = c4u.image
 
-    function c4u.image:new()
+    function c4u_image:new()
         local r = c4u.component.subtype_instance(self)
         r._renderedId = -1
         r._source = ''
@@ -318,74 +320,74 @@ do
         return r
     end
 
-    function c4u.image:isRendered()
+    function c4u_image:isRendered()
         return self._renderedId ~= -1
     end
     
-    function c4u.image:source()
+    function c4u_image:source()
         return self._source
     end
 
-    function c4u.image:setSource(v)
+    function c4u_image:setSource(v)
         self._source = v
         return self
     end
 
-    function c4u.image:scaleX()
+    function c4u_image:scaleX()
         return self._scaleX
     end
 
-    function c4u.image:setScaleX(v)
+    function c4u_image:setScaleX(v)
         self._scaleX = tonumber(v)
         return self
     end
 
-    function c4u.image:scaleY()
+    function c4u_image:scaleY()
         return self._scaleY
     end
 
-    function c4u.image:setScaleY(v)
+    function c4u_image:setScaleY(v)
         self._scaleY = tonumber(v)
         return self
     end
 
-    function c4u.image:angle()
+    function c4u_image:angle()
         return self._angle
     end
 
-    function c4u.image:setAngle(v)
+    function c4u_image:setAngle(v)
         self._angle = tonumber(v)
         return self
     end
 
-    function c4u.image:alpha()
+    function c4u_image:alpha()
         return self._alpha
     end
 
-    function c4u.image:setAlpha(v)
+    function c4u_image:setAlpha(v)
         self._alpha = tonumber(v)
         return self
     end
 
-    function c4u.image:anchorX()
+    function c4u_image:anchorX()
         return self._anchorX
     end
 
-    function c4u.image:setAnchorX(v)
+    function c4u_image:setAnchorX(v)
         self._anchorX = tonumber(v)
         return self
     end
 
-    function c4u.image:anchorY()
+    function c4u_image:anchorY()
         return self._anchorY
     end
 
-    function c4u.image:setAnchorY(v)
+    function c4u_image:setAnchorY(v)
         self._anchorY = tonumber(v)
         return self
     end
 
-    function c4u.image:render()
+    function c4u_image:render()
         if self:isRendered() then
             self:unrender()
         end
@@ -395,7 +397,7 @@ do
         self:renderChildren()
     end
 
-    function c4u.image:unrender()
+    function c4u_image:unrender()
         if not self:isRendered() then
             return
         end
