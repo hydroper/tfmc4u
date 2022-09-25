@@ -42,7 +42,7 @@ do
         if ar == nil then
             return
         end
-        local ari = table_indexOf(id)
+        local ari = table_indexOf(ar, id)
         if ari ~= -1 then
             table.remove(ar, ari)
             if #ar == 0 then
