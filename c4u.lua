@@ -404,4 +404,74 @@ do
         self._renderedId = -1
         self:unrenderChildren()
     end
+
+    c4u.popup = c4u.component.subtype()
+    local c4u_popup = c4u.popup
+
+    function c4u_popup:new()
+        local r = c4u.component.subtype_instance(self)
+        r._renderedId = -1
+        r._text = ''
+        r._popupType = 'simple'
+        r._width = 0
+        return r
+    end
+
+    function c4u_popup:isRendered()
+        return self._renderedId ~= -1
+    end
+
+    function c4u_popup:width()
+        return self._width
+    end
+
+    function c4u_popup:width(width)
+        self._width = tonumber(width)
+        return self
+    end
+
+    function c4u_popup:text()
+        return self._text
+    end
+
+    function c4u_popup:setText(text)
+        self._text = tonumber(text)
+        return self
+    end
+
+    function c4u_popup:popupType()
+        return self._popupType
+    end
+
+    function c4u_popup:setPopupType(v)
+        v = tostring(v)
+        if table_indexOf({'simple', 'yesOrNo', 'playerInput'}, v) == -1 then
+            error('Invalid popup type: ' .. v)
+        end
+        self._popupType = v
+        return self
+    end
+
+    function c4u_popup:render()
+        if self:isRendered() then
+            self:unrender()
+        end
+        local target = self:inheritTarget()
+        self._renderedId = allocateId(target)
+        local parent = self._parent
+        local popupTypeN = self._popupType == 'playerInput' and 2 or self._popupType == 'yesOrNo' and 1 or 0
+        ui.addPopup(self._renderedId, popupTypeN, self._text, target, self:globalX(), self:globalY(), self._width, self:inheritFixedPos())
+        self:renderChildren()
+    end
+
+    function c4u_popup:unrender()
+        if not self:isRendered() then
+            return
+        end
+        local target = self:inheritTarget()
+        -- ui.removePopup(self._renderedId, target)
+        freeId(target, self._renderedId)
+        self._renderedId = -1
+        self:unrenderChildren()
+    end
 end
