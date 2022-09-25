@@ -425,7 +425,7 @@ do
         return self._width
     end
 
-    function c4u_popup:width(width)
+    function c4u_popup:setWidth(width)
         self._width = tonumber(width)
         return self
     end
