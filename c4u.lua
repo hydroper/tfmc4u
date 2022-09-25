@@ -390,7 +390,6 @@ do
             self:unrender()
         end
         local target = self:inheritTarget()
-        local parent = self._parent
         local fixedPos = self:inheritFixedPos()
         self._renderedId = tfm.exec.addImage(self._source, (fixedPos and '&' or '!') .. tostring(1), self:globalX(), self:globalY(), target, self._scaleX, self._scaleY, self._angle, self._alpha, self._anchorX, self._anchorY)
         self:renderChildren()
