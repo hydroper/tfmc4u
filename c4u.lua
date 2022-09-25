@@ -88,12 +88,11 @@ do
             if self._children == nil then
                 return false
             end
-            for i, v in ipairs(self._children) do
-                if v == c then
-                    table.remove(self._children, i)
-                    c._parent = nil
-                    return true
-                end
+            local i = table_indexOf(self._children, c)
+            if i ~= -1 then
+                table.remove(self._children, i)
+                c._parent = nil
+                return true
             end
             return false
         end
