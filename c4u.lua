@@ -1,6 +1,15 @@
 _G.c4u = { internals = {} }
 
 do
+    local function table_indexOf(t, v)
+        for i, v2 in ipairs(t) do
+            if v == v2 then
+                return i
+            end
+        end
+        return -1
+    end
+
     local allocatedIdsByTarget = {}
     local function allocateId(target)
         if target == nil then
@@ -33,16 +42,12 @@ do
         if ar == nil then
             return
         end
-        local i, arl = 1, #ar
-        while i <= arl do
-            if ar[i] == id then
-                table.remove(ar, i)
-                if arl == 1 then
-                    allocatedIdsByTarget[target] = nil
-                end
-                return
+        local ari = table_indexOf(id)
+        if ari ~= -1 then
+            table.remove(ar, ari)
+            if #ar == 0 then
+                allocatedIdsByTarget[target] = nil
             end
-            i = i + 1
         end
     end
 
