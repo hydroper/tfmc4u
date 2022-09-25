@@ -421,6 +421,10 @@ do
         return self._renderedId ~= -1
     end
 
+    function c4u_popup:getRenderedPopupId()
+        return self._renderedId
+    end
+
     function c4u_popup:width()
         return self._width
     end
