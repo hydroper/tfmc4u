@@ -92,6 +92,7 @@ do
             if i ~= -1 then
                 table.remove(self._children, i)
                 c._parent = nil
+                c:unrender()
                 return true
             end
             return false
